@@ -22,7 +22,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
     http.HandleFunc("/", handler)
-    err := http.ListenAndServe(":80", nil)
+    err := http.ListenAndServe(":80", http.FileServer(http.Dir("/home/ec2-user/gocode/src/github.com/sahilng/Projectx-go/style.css")))
 
     if err != nil {
         log.Println(err)
