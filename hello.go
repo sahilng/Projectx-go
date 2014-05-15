@@ -23,7 +23,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
     http.HandleFunc("/", handler)
-    err := http.ListenAndServe(":80", http.FileServer(http.Dir("/style.css")))
+    err := http.ListenAndServe(":80", nil)
+    err := http.ListenAndServe(":80/style.css", http.FileServer(http.Dir("/style.css")))
 
     if err != nil {
         log.Println(err)
