@@ -12,7 +12,7 @@ const resp = `<html>
     </head>
     <body>
         <h1>ProjectX's Dev Site</h1>
-        <p>Hello World!</p>
+        <p>Hello World.</p>
     </body>
 </html>`
 
