@@ -21,10 +21,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
     w.Write([]byte(resp))
 }
 
+func cssHandler(w http.ResponseWriter, r *http.Request){
+    http.ServeFile(w, r, "style.css")
+}
+
 func main() {
     http.HandleFunc("/", handler)
+    http.HandleFunc("/style.css", cssHandler)
     err := http.ListenAndServe(":80", nil)
-    err2 := http.ListenAndServe(":80/style.css", http.FileServer(http.Dir("/style.css")))
 
     if err != nil {
         log.Println(err)
