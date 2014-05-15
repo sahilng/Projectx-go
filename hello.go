@@ -30,4 +30,9 @@ func main() {
         log.Println(err)
         os.Exit(1)
     }
+
+    if err2 != nil {
+        log.Println(err2)
+        os.Exit(1)
+    }
 }
