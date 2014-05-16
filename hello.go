@@ -9,7 +9,7 @@ import(
 const resp = `<html>
     <head>
         <title>ProjectX</title>
-        <link rel=stylehseet type=text href="style.css">
+        <link rel=stylehseet type=text href="static/style.css">
     </head>
     <body>
         <h1>ProjectXs Dev Site</h1>
