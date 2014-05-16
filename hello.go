@@ -1,9 +1,8 @@
 package main
 
 import(
+    "fmt"
     "net/http"
-    "log"
-    "os"
 )
 
 const resp = `<html>
@@ -23,12 +22,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 
 func main() {
-    http.HandleFunc("/", handler)
-    err := http.ListenAndServe(":80", nil)
+    http.HandleFunc("/", handler)//homepage
+    
+    http.Handle("/static", http.FileServer(http.Dir("./static/")))
 
-    if err != nil {
-        log.Println(err)
-        os.Exit(1)
-    }
-
+    http.ListenAndServe(":80", nil)
 }
