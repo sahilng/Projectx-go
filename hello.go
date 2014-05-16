@@ -1,30 +1,27 @@
 package main
 
-import (
-    "fmt"
+import(
     "net/http"
 )
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "HomeHandler")
+const resp = `<html>
+    <head>
+        <title>ProjectX</title>
+        <link rel=stylehseet type=text href="style.css">
+    </head>
+    <body>
+        <h1>ProjectXs Dev Site</h1>
+        <p>Hello World.</p>
+    </body>
+</html>`
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte(resp))
 }
 
-func serveSingle(pattern string, filename string) {
-    http.HandleFunc(pattern, func(w http.ResponseWriter, r *http.Request) {
-        http.ServeFile(w, r, filename)
-    })
-}
 
 func main() {
-    http.HandleFunc("/", HomeHandler) // homepage
-
-    // Mandatory root-based resources
-    serveSingle("/sitemap.xml", "./sitemap.xml")
-    serveSingle("/favicon.ico", "./favicon.ico")
-    serveSingle("/robots.txt", "./robots.txt")
-
-    // Normal resources
-    http.Handle("/static", http.FileServer(http.Dir("./static/")))
-
-    http.ListenAndServe(":8080", nil)
+    http.HandleFunc("/", handler)//homepage
+    
+    http.ListenAndServe(":80", nil)
 }
